@@ -1,0 +1,1 @@
+ALTER TABLE oc_product_description ADD COLUMN canonical VARCHAR(200);
