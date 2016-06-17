@@ -8,3 +8,4 @@
  <li>Go to the template "catalog/view/theme/YourTheme/template/common/header.tpl" and add next line</li>
  <li>	&lt;?php if ($canonical) { ?&gt;&lt;link rel="canonical" href="&lt;?php echo $canonical; ?&gt;" /&gt; &lt;?php } ?&gt;</li>
 </ul>
+# License - free
