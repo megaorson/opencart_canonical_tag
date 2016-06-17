@@ -1,4 +1,4 @@
-# opencart_canonical_tag
+# opencart canonical tag
  This plugin will add new field to product form (add\edit) . This field is a canonical tag who will add to head
  For more information about this tag go to https://support.google.com/webmasters/answer/139066
 # Installing:
