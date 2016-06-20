@@ -9,10 +9,10 @@
     <file path="admin/model/catalog/product.php">
         <operation>
            <search><![CDATA[
-           $this->db->query("INSERT INTO " . DB_PREFIX . "product_description SET product_id = '" . (int)$product_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', tag = '" . $this->db->escape($value['tag']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
+           "', meta_keyword = '" . $this->db->escape($value['meta_keyword'])
            ]]></search>
            <add position="replace"><![CDATA[
-           $this->db->query("INSERT INTO " . DB_PREFIX . "product_description SET product_id = '" . (int)$product_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', tag = '" . $this->db->escape($value['tag']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "', canonical = '" . $this->db->escape($value['canonical']) . "'");
+           "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "', canonical = '" . $this->db->escape($value['canonical'])
            ]]></add>
         </operation>
         <operation>
@@ -21,7 +21,7 @@
            ]]></search>
            <add position="replace"><![CDATA[
            'tag'              => $result['tag'],
-           'canonical'              => $result['canonical'],
+           'canonical'              => $result['canonical']
            ]]></add>
         </operation>
     </file>
@@ -31,7 +31,7 @@
            <div class="tab-pane" id="language<?php echo $language['language_id']; ?>">
            ]]></search>
            <add position="after"><![CDATA[
-           <div class="form-group required">
+           <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-canonical<?php echo $language['language_id']; ?>"><?php echo $entry_canonical; ?></label>
                 <div class="col-sm-10">
                   <input type="text" name="product_description[<?php echo $language['language_id']; ?>][canonical]" value="<?php echo isset($product_description[$language['language_id']]) ? $product_description[$language['language_id']]['canonical'] : ''; ?>" placeholder="<?php echo $entry_canonical; ?>" id="input-canonical<?php echo $language['language_id']; ?>" class="form-control" />
@@ -81,6 +81,9 @@
            ]]></add>
         </operation>
     </file>
+    <!--admin end-->
+    
+    <!--catalog begin-->
     <file path="catalog/controller/product/product.php">
         <operation>
            <search><![CDATA[
@@ -88,24 +91,6 @@
            ]]></search>
            <add position="after"><![CDATA[
            $this->document->setCanonical($product_info['canonical']);
-           ]]></add>
-        </operation>
-    </file>
-    <file path="system/library/document.php">
-        <operation>
-           <search><![CDATA[
-           class Document {
-           ]]></search>
-           <add position="after"><![CDATA[
-            private $canonical;
-            public function setCanonical($canonical) {
-                $this->canonical = $canonical;
-            }
-
-            public function getCanonical() {
-                return $this->canonical;
-            }
-               
            ]]></add>
         </operation>
     </file>
@@ -129,6 +114,27 @@
            ]]></add>
         </operation>
     </file>
+    <!--catalog end-->
     
-    <!--admin end-->
+    <!--system end-->
+    <file path="system/library/document.php">
+        <operation>
+           <search><![CDATA[
+           class Document {
+           ]]></search>
+           <add position="after"><![CDATA[
+            private $canonical;
+            public function setCanonical($canonical) {
+                $this->canonical = $canonical;
+            }
+
+            public function getCanonical() {
+                return $this->canonical;
+            }
+               
+           ]]></add>
+        </operation>
+    </file>
+    <!--system end-->
+    
 </modification>
